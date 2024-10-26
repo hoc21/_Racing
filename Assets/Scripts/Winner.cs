@@ -1,22 +1,17 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.Collections;
 
 public class Winner : MonoBehaviour
 {
+    [SerializeField] private GameObject finishButton;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            StartCoroutine(NextLevelAfterDelay(2f)); 
+            finishButton.SetActive(true);         
         }
-    }
-
-    IEnumerator NextLevelAfterDelay(float delay)
-    {
-        yield return new WaitForSeconds(delay);
-        int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-        SceneManager.LoadScene(currentSceneIndex + 1);
     }
 }
 
