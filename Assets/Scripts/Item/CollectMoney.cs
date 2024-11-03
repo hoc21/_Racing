@@ -9,7 +9,8 @@ public class CollectMoney : MonoBehaviour
         if (collision.gameObject.CompareTag("Player"))
         {
             Destroy(gameObject);
-            ScoreMoney.scoreValue += 1000;
+            ScoreMoney.scoreValue += 100;
+            //SaveManager.instance.money += 1000;
         }
     }
 }
