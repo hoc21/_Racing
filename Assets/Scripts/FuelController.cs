@@ -4,9 +4,8 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FuelController : MonoBehaviour
+public class FuelController : SingletonBehavior<FuelController>
 {
-    public static FuelController instance;
 
     [SerializeField] private Image fuelImage;
     [SerializeField, Range(0.1f,5f)] private float fuelDrainSpeed = 1f;
@@ -14,15 +13,7 @@ public class FuelController : MonoBehaviour
     [SerializeField] private Gradient fuelGradient;
 
     private float currentFuelAmount;
-
-
-    private void Awake()
-    {
-        if(instance == null)
-        {
-            instance = this;
-        }
-    }
+   
     void Start()
     {
         currentFuelAmount = maxFuelAmount;

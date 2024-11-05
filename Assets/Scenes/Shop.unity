@@ -569,7 +569,6 @@ GameObject:
   - component: {fileID: 249890643}
   - component: {fileID: 249890645}
   - component: {fileID: 249890644}
-  - component: {fileID: 249890646}
   m_Layer: 5
   m_Name: MoneyCounter
   m_TagString: Untagged
@@ -631,7 +630,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 200$
+  m_Text: 0
 --- !u!222 &249890645
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -640,18 +639,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 249890642}
   m_CullTransparentMesh: 1
---- !u!114 &249890646
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 249890642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e502a8c9ed8e0294c9cb3268a6ed6301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &263701230
 GameObject:
   m_ObjectHideFlags: 0
@@ -988,6 +975,7 @@ MonoBehaviour:
   currentCar: 0
   money: 0
   carsUnblock: 010000
+  totalCoinsText: {fileID: 0}
 --- !u!4 &366596440
 Transform:
   m_ObjectHideFlags: 0

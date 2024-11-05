@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -22,10 +23,10 @@ public class CarSelection : MonoBehaviour
 
     void Start()
     {
-        currentCar = SaveManager.instance.currentCar;
+        //currentCar = SaveManager.Instance.currentCar;
         SelectCar(currentCar);
     }
-
+    
     private void SelectCar(int index)
     {
         for (int i = 0; i < transform.childCount; i++)
@@ -37,7 +38,7 @@ public class CarSelection : MonoBehaviour
 
     public void UpdateUI()
     {
-        if (SaveManager.instance.carsUnblock[currentCar])
+        if (SaveManager.Instance.carsUnblock[currentCar])
         {
             play.gameObject.SetActive(true);
             buy.gameObject.SetActive(false);
@@ -53,10 +54,12 @@ public class CarSelection : MonoBehaviour
     private void Update()
     {
         //check if we have enough money
-        if (buy.gameObject.activeInHierarchy)
-        {
-            buy.interactable = (SaveManager.instance.money >= carPrices[currentCar]);
-        }
+        //if (buy.gameObject.activeInHierarchy)
+        //{
+        //    buy.interactable = (SaveManager.Instance.money >= carPrices[currentCar]);
+        //}
+        Debug.Log(SaveManager.totalCoins);
+        Debug.Log(SaveManager.Instance.currentCar);
     }
 
     public void ChangeCar(int change)
@@ -68,17 +71,17 @@ public class CarSelection : MonoBehaviour
         else if(currentCar < 0)
             currentCar = transform.childCount - 1;
 
-        SaveManager.instance.currentCar = currentCar;
-        SaveManager.instance.Save();
+        SaveManager.Instance.currentCar = currentCar;
+        SaveManager.Instance.Save();
 
         SelectCar(currentCar);
     }
 
     public void BuyCar()
     {
-        SaveManager.instance.money -= carPrices[currentCar];
-        SaveManager.instance.carsUnblock[currentCar] = true;
-        SaveManager.instance.Save();
+        SaveManager.Instance.money -= carPrices[currentCar];
+        SaveManager.Instance.carsUnblock[currentCar] = true;
+        SaveManager.Instance.Save();
         UpdateUI();
     }
 }

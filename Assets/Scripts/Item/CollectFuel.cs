@@ -8,7 +8,7 @@ public class CollectFuel : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            FuelController.instance.FillFuel();
+            FuelController.Instance.FillFuel();
             Destroy(gameObject);
         }
     }

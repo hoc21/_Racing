@@ -17,5 +17,6 @@ public class ScoreMoney : MonoBehaviour
     private void Update()
     {
         score.text = scoreValue.ToString();
+        score.text = SaveManager.Instance.money + "$";
     }
 }

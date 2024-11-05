@@ -9,13 +9,13 @@ public class MoneyAdd : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SaveManager.instance.money += 100;
-            SaveManager.instance.Save();
+            SaveManager.Instance.money += 100;
+            SaveManager.Instance.Save();
         }
         else if (Input.GetKeyDown(KeyCode.F))
         {
-            SaveManager.instance.money -= 100;
-            SaveManager.instance.Save();
+            SaveManager.Instance.money -= 100;
+            SaveManager.Instance.Save();
         }           
     }
 }

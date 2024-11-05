@@ -4,23 +4,23 @@ using System.Collections.Generic;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class SaveManager : MonoBehaviour
+public class SaveManager : Singleton<SaveManager>
 {
-    public static SaveManager instance {  get; private set; }
+    PlayerData_Storage data = new PlayerData_Storage();
     public int currentCar;
     public int money;
     public bool[] carsUnblock = new bool[3] {true,false,false };
+    public Text totalCoinsText;
+    public static int totalCoins;
 
     private void Awake()
     {
-        if(instance != null && instance != this)
-            Destroy(gameObject);
-        else
-            instance = this;
-
-        DontDestroyOnLoad(gameObject);
         Load();
+    }
+    private void Update()
+    {
     }
 
     public void Load()
@@ -46,8 +46,6 @@ public class SaveManager : MonoBehaviour
     {
         BinaryFormatter bf = new BinaryFormatter();
         FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
-        PlayerData_Storage data = new PlayerData_Storage();
-
         data.money = money;
         data.currentCar = currentCar;
         data.carsUnblock = carsUnblock;
