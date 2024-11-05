@@ -7,15 +7,6 @@ public class MoneyAdd : MonoBehaviour
 {
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.E))
-        {
-            SaveManager.Instance.money += 100;
-            SaveManager.Instance.Save();
-        }
-        else if (Input.GetKeyDown(KeyCode.F))
-        {
-            SaveManager.Instance.money -= 100;
-            SaveManager.Instance.Save();
-        }           
+              
     }
 }

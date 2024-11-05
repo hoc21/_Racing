@@ -1,64 +1,61 @@
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using System.IO;
-using System.Runtime.Serialization.Formatters.Binary;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SaveManager : Singleton<SaveManager>
 {
-    PlayerData_Storage data = new PlayerData_Storage();
     public int currentCar;
-    public int money;
-    public bool[] carsUnblock = new bool[3] {true,false,false };
+    public bool[] carsUnblock = new bool[3] { true, false, false };
     public Text totalCoinsText;
-    public static int totalCoins;
+    public int totalCoins;
 
-    private void Awake()
+    private void Start()
     {
         Load();
+        UpdateCoinsUI();
     }
+
     private void Update()
     {
+        Debug.Log("Total Coins: " + totalCoins);
     }
 
     public void Load()
     {
-        if(File.Exists(Application.persistentDataPath + "/playerInfo.dat"))
+        totalCoins = PlayerPrefs.GetInt("Coins", 0); 
+        currentCar = PlayerPrefs.GetInt("CurrentCar", 0); 
+
+        for (int i = 0; i < carsUnblock.Length; i++)
         {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(Application.persistentDataPath + "/playerInfo.dat",FileMode.Open);
-            PlayerData_Storage data = (PlayerData_Storage)bf.Deserialize(file);
-
-            money = data.money;
-            currentCar = data.currentCar;
-            carsUnblock = data.carsUnblock;
-
-            if(data.carsUnblock == null)
-                carsUnblock = new bool[3] { true, false, false };
-
-            file.Close();
+            carsUnblock[i] = PlayerPrefs.GetInt($"CarUnlock_{i}", i == 0 ? 1 : 0) == 1; 
         }
+
+        UpdateCoinsUI();
     }
 
     public void Save()
     {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file = File.Create(Application.persistentDataPath + "/playerInfo.dat");
-        data.money = money;
-        data.currentCar = currentCar;
-        data.carsUnblock = carsUnblock;
+        PlayerPrefs.SetInt("Coins", totalCoins); 
+        PlayerPrefs.SetInt("CurrentCar", currentCar); 
 
-        bf.Serialize(file, data);
-        file.Close();
+        for (int i = 0; i < carsUnblock.Length; i++)
+        {
+            PlayerPrefs.SetInt($"CarUnlock_{i}", carsUnblock[i] ? 1 : 0);
+        }
+        PlayerPrefs.Save(); 
     }
-}
 
-[Serializable]
-class PlayerData_Storage
-{
-    public int money;
-    public int currentCar;
-    public bool[] carsUnblock;
+    private void UpdateCoinsUI()
+    {
+        if (totalCoinsText != null)
+        {
+            totalCoinsText.text = totalCoins.ToString();
+        }
+        else
+        {
+            Debug.LogWarning("totalCoinsText is not assigned in the Inspector.");
+        }
+    }
 }

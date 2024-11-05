@@ -6,17 +6,5 @@ using UnityEngine.UI;
 
 public class ScoreMoney : MonoBehaviour
 {
-    public static int scoreValue = 0;
-    Text score;
 
-    private void Start()
-    {
-        score = GetComponent<Text>();
-    }
-
-    private void Update()
-    {
-        score.text = scoreValue.ToString();
-        score.text = SaveManager.Instance.money + "$";
-    }
 }

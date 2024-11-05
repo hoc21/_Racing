@@ -1,26 +1,37 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
 
 public class PlayerManager : SingletonBehavior<PlayerManager>
 {
+    public static int numberOfCoin;
     public Text coinText;
-    public static int numberCoin;
 
-    // Start is called before the first frame update
     void Start()
     {
-        numberCoin = 0;
+        ResetGameState();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        UpdateCoin();
+        UpdateCoinText();
     }
-    void UpdateCoin()
+
+    void ResetGameState()
     {
-        coinText.text = "" +numberCoin;
+        numberOfCoin = 0;
+        coinText.gameObject.SetActive(true);
+    }
+
+    void UpdateCoinText()
+    {
+        coinText.text = "Golds: " + numberOfCoin;
+    }
+
+    public void SavePlayerData()
+    {
+        int totalCoins = PlayerPrefs.GetInt("Coins", 0);
+        totalCoins += numberOfCoin; 
+        PlayerPrefs.SetInt("Coins", totalCoins);
+        PlayerPrefs.Save();
     }
 }
