@@ -13,7 +13,8 @@ public class GameManager : SingletonBehavior<GameManager>
     [SerializeField] private GameObject resumeGame;
     [SerializeField] private GameObject quitGame;
 
-    private void Awake()
+   
+    private void Start()
     {
         Time.timeScale = 1.0f;
     }

@@ -388,7 +388,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f231c4fb786f3946a6b90b886c48677, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_SendPointerHoverToParent: 1
   m_HorizontalAxis: Horizontal
   m_VerticalAxis: Vertical
   m_SubmitButton: Submit
@@ -672,8 +671,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   leftButton: {fileID: 7696309}
   rightButton: {fileID: 249013311}
-  play: {fileID: 1147554912}
-  buy: {fileID: 2048041651}
+  playButton: {fileID: 1147554912}
+  buyButton: {fileID: 2048041651}
   priceText: {fileID: 1205139386}
   currentCar: 0
   carPrices: 00000000c800000090010000
@@ -954,7 +953,6 @@ GameObject:
   m_Component:
   - component: {fileID: 366596440}
   - component: {fileID: 366596439}
-  - component: {fileID: 366596441}
   m_Layer: 0
   m_Name: SaveManager
   m_TagString: Untagged
@@ -975,9 +973,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentCar: 0
-  money: 0
   carsUnblock: 010000
   totalCoinsText: {fileID: 249890644}
+  totalCoins: 0
 --- !u!4 &366596440
 Transform:
   m_ObjectHideFlags: 0
@@ -993,18 +991,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &366596441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 366596438}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e3ff0c515ea61214a94e479c9e2a0a72, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &477688359
 GameObject:
   m_ObjectHideFlags: 0
@@ -1413,7 +1399,7 @@ MonoBehaviour:
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: -1
           m_FloatArgument: 0
-          m_StringArgument: Level 1
+          m_StringArgument: Level
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1147554913

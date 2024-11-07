@@ -27,7 +27,7 @@ public class FuelController : SingletonBehavior<FuelController>
 
         if(currentFuelAmount <= 0)
         {
-            GameManager.instance.GameOver();
+            GameManager.Instance.GameOver();
         }
     }
 

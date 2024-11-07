@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class SaveManager : Singleton<SaveManager>
+public class SaveManager : SingletonBehavior<SaveManager>
 {
     public int currentCar;
     public bool[] carsUnblock = new bool[3] { true, false, false };
@@ -16,12 +16,10 @@ public class SaveManager : Singleton<SaveManager>
         Load();
         UpdateCoinsUI();
     }
-
     private void Update()
     {
-        Debug.Log("Total Coins: " + totalCoins);
+        Load();
     }
-
     public void Load()
     {
         totalCoins = PlayerPrefs.GetInt("Coins", 0); 
