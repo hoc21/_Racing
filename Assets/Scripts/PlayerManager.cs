@@ -25,6 +25,7 @@ public class PlayerManager : SingletonBehavior<PlayerManager>
     void UpdateCoinText()
     {
         coinText.text = "Golds: " + numberOfCoin;
+        coinText.color = Color.yellow;
     }
 
     public void SavePlayerData()

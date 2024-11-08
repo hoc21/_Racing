@@ -17,4 +17,4 @@ MonoBehaviour:
   mapDescription: Perfect for a romantic date
   nameColor: {r: 0, g: 0.22280979, b: 1, a: 1}
   mapImage: {fileID: 21300000, guid: 88cbc2e9aefa4ed479abe6c295aa6f08, type: 3}
-  sceneToLoad: {fileID: 11400000}
+  sceneToLoad: {fileID: 102900000, guid: 9611122c4837580468736f139ad86d2a, type: 3}
