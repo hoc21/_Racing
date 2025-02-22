@@ -19,10 +19,18 @@ public class CarSelection : SingletonBehavior<CarSelection>
 
     [Header("Car Attributes")]
     public int currentCar;
+    public GameObject[] carModels;
     [SerializeField] private int[] carPrices;
-
+    private void Awake()
+    {
+        PlayerPrefs.Save();
+    }
     void Start()
     {
+        currentCar = PlayerPrefs.GetInt("CurrentCar", 0);
+        foreach(GameObject car in carModels)
+            car.SetActive(false);
+        carModels[currentCar].SetActive(true);
         currentCar = SaveManager.Instance.currentCar;
         SelectCar(currentCar);
     }
@@ -35,7 +43,10 @@ public class CarSelection : SingletonBehavior<CarSelection>
         }
         UpdateUI();
     }
-
+    void Update()
+    {
+        
+    }
     public void UpdateUI()
     {
         bool isUnlocked = SaveManager.Instance.carsUnblock[currentCar];
@@ -52,16 +63,18 @@ public class CarSelection : SingletonBehavior<CarSelection>
 
     public void ChangeCar(int change)
     {
+        carModels[currentCar].SetActive(false);
         currentCar += change;
 
         if (currentCar > transform.childCount - 1)
             currentCar = 0;
         else if (currentCar < 0)
             currentCar = transform.childCount - 1;
-
+        carModels[currentCar].SetActive(true);
         SaveManager.Instance.currentCar = currentCar;
         SaveManager.Instance.Save();
-
+        PlayerPrefs.SetInt("CurrentCar", currentCar);
+        PlayerPrefs.Save();
         SelectCar(currentCar);
     }
 
@@ -72,6 +85,7 @@ public class CarSelection : SingletonBehavior<CarSelection>
             SaveManager.Instance.totalCoins -= carPrices[currentCar];
             SaveManager.Instance.carsUnblock[currentCar] = true;
             SaveManager.Instance.Save();
+            PlayerPrefs.GetInt("CurrentCar", currentCar);
             UpdateUI();
         }
     }

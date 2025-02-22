@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 
-public class FuelController : SingletonBehavior<FuelController>
+public class FuelController : MonoBehaviour
 {
 
     [SerializeField] private Image fuelImage;
@@ -24,7 +24,7 @@ public class FuelController : SingletonBehavior<FuelController>
     {
         currentFuelAmount -= Time.deltaTime * fuelDrainSpeed;
         UpdateUI();
-
+        Debug.Log(currentFuelAmount);
         if(currentFuelAmount <= 0)
         {
             GameManager.Instance.GameOver();

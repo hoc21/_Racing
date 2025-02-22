@@ -28,4 +28,8 @@ public class DisplayDistanceText : MonoBehaviour
         }
         distanceText.text = distance.x.ToString("F0") + "m"; 
     }
+    public void SetTarget(Transform target)
+    {
+        playerTrans = target;
+    }
 }

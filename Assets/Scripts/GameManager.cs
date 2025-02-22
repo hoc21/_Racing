@@ -40,6 +40,6 @@ public class GameManager : SingletonBehavior<GameManager>
     }
     public void QuitGame()
     {
-        Application.Quit();
+        SceneManager.LoadScene("Menu");
     }
 }
